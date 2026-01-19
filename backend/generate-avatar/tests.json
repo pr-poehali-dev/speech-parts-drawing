@@ -5,13 +5,13 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "partOfSpeech": "Существительное",
+        "speechPartId": "noun",
         "prompt": "милый персонаж в форме книги"
       },
       "expectedStatus": 200,
       "expectedBody": {
-        "imageUrl": "string",
-        "partOfSpeech": "Существительное"
+        "avatarUrl": "string",
+        "speechPartId": "noun"
       },
       "bodyMatcher": "partial"
     },
@@ -20,7 +20,7 @@
       "method": "POST",
       "path": "/",
       "body": {
-        "partOfSpeech": "Глагол"
+        "speechPartId": "verb"
       },
       "expectedStatus": 400,
       "expectedBody": {
