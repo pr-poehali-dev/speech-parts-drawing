@@ -29,7 +29,7 @@ def handler(event: dict, context) -> dict:
     
     try:
         body = json.loads(event.get('body', '{}'))
-        part_of_speech = body.get('partOfSpeech', '')
+        speech_part_id = body.get('speechPartId', '')
         user_prompt = body.get('prompt', '')
         
         if not user_prompt:
@@ -53,8 +53,6 @@ def handler(event: dict, context) -> dict:
                 'body': json.dumps({'error': 'API key not configured'})
             }
         
-        full_prompt = f"Cute cartoon character representing '{part_of_speech}' (Russian grammar part of speech), {user_prompt}, colorful, friendly, educational style, simple background, vector art style, children's book illustration"
-        
         generate_response = requests.post(
             'https://api.poehali.dev/v1/images/generate',
             headers={
@@ -62,7 +60,7 @@ def handler(event: dict, context) -> dict:
                 'Content-Type': 'application/json'
             },
             json={
-                'prompt': full_prompt,
+                'prompt': user_prompt,
                 'model': 'flux'
             },
             timeout=60
@@ -79,7 +77,7 @@ def handler(event: dict, context) -> dict:
             }
         
         result = generate_response.json()
-        image_url = result.get('url', '')
+        avatar_url = result.get('url', '')
         
         return {
             'statusCode': 200,
@@ -88,8 +86,8 @@ def handler(event: dict, context) -> dict:
                 'Access-Control-Allow-Origin': '*'
             },
             'body': json.dumps({
-                'imageUrl': image_url,
-                'partOfSpeech': part_of_speech
+                'avatarUrl': avatar_url,
+                'speechPartId': speech_part_id
             })
         }
         
