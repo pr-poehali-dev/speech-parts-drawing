@@ -1,0 +1,32 @@
+{
+  "tests": [
+    {
+      "name": "Generate avatar for noun",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "partOfSpeech": "Существительное",
+        "prompt": "милый персонаж в форме книги"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "imageUrl": "string",
+        "partOfSpeech": "Существительное"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Generate avatar without prompt",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "partOfSpeech": "Глагол"
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
