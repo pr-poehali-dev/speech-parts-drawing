@@ -32,7 +32,7 @@ export default function AvatarGenerator({
     try {
       const fullPrompt = `Создай яркую креативную аватарку для части речи "${speechPart.name}". ${prompt}. Стиль: современный, красочный, образовательный`;
 
-      const response = await fetch('/backend/generate-avatar', {
+      const response = await fetch('https://functions.poehali.dev/c95244ae-ead3-440e-bbde-71cd3094cea4', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
